@@ -1,0 +1,9 @@
+header h1 {
+text-align: center;
+color:purple;
+background-color: rgb(76, 204, 236);
+}
+
+.display-container {
+    text-align: center;
+}
