@@ -7,3 +7,10 @@ background-color: rgb(76, 204, 236);
 .display-container {
     text-align: center;
 }
+.main-container {
+    margin-left: 20px;
+
+}
+.city-button {
+    width: 100%;
+}
