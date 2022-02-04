@@ -49,7 +49,7 @@ var makeCoordinates = function(cityEntered){
 var getWeather = function(lat,lon){
 
 
-  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
+  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6&units=metric";
   fetch(apiURL2)
   .then(function(response) {
     // request was successful
@@ -66,17 +66,32 @@ var getWeather = function(lat,lon){
           console.log(date)
           var dayCard = document.createElement("div");
           dayCard.classList.add("card");
+          dayCard.classList.add("col-2");
           displayContainer.append(dayCard);
           var icon = data.daily[i].weather[0].icon;
           var image = document.createElement("img");
           image.src = "http://openweathermap.org/img/wn/" + icon +"@2x.png";
          // console.log(image);
-          dayCard.appendChild(image);
           var temp = document.createElement("p");
-          temp.textContent = data.daily[i].weather[0].temp;
+          temp.textContent = (data.daily[i].temp.day);
+          var displayDate = document.createElement("p");
+          displayDate.textContent = (date);
+          var displayCity = document.createElement("p");
+          displayCity.textContent = (cityEntered.value);
+          var humidity = document.createElement("p");
+          humidity.textContent = (data.daily[i].humidity);
+          var windSpeed = document.createElement("p");
+          windSpeed.textContent = (data.daily[i].wind_speed);
+          var uvi = document.createElement("p");
+          uvi.textContent = (data.daily[i].uvi);
+          dayCard.appendChild(displayCity);
+          dayCard.appendChild(displayDate);
+          dayCard.appendChild(image);
           dayCard.appendChild(temp);
-
-        }
+          dayCard.appendChild(humidity);
+          dayCard.appendChild(windSpeed);
+          dayCard.appendChild(uvi);
+        };
        
         //console.log(list.main.temp);
       });
