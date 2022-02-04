@@ -3,15 +3,21 @@ var submit = document.querySelector("#submit-button");
 var cityEntered = document.querySelector("#city-entered");
 var cityList = document.querySelector("#city-list");
 var displayContainer = document.querySelector("#display-container");
-
+//var cityArr = [""];
 // when submit button is clicked, add text in input to a list of buttons
 submit.addEventListener("click", function(event) {
 event.preventDefault();
+
+// if(!cityArr.includes(cityEntered.value)){
+//   cityArr.push(cityEntered.value)
+// }
+//loop through cityArr{
 var cityEl = document.createElement("button");
 cityEl.classList.add("city-button");
+//}
 cityEl.textContent = cityEntered.value;
 cityList.appendChild(cityEl);
-//localStorage.setItem("?", ?.val());
+makeCoordinates(cityEntered.value)
 });
 
 
@@ -24,13 +30,11 @@ var makeCoordinates = function(cityEntered){
     .then(function(response) {
       // request was successful
       if (response.ok) {
-        console.log(response);
+        //console.log(response);
         response.json().then(function(data) {
-          var lat = "50";
-          var lon = "99";
-          console.log(data);
-          console.log(lat);
-          console.log(lat);
+          var lat = data[0].lat;
+          var lon = data[0].lon;
+          //console.log(data);
           getWeather(lat,lon);
         });
       } else {
@@ -44,17 +48,37 @@ var makeCoordinates = function(cityEntered){
 
 var getWeather = function(lat,lon){
 
-  var apiURL2 = "api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
+
+  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
   fetch(apiURL2)
-  .then(function(lat,lon) {
+  .then(function(response) {
     // request was successful
     if (response.ok) {
-      var todayCard = document.createElement("div");
+      //var todayCard = document.createElement("div");
       //todayCard.textContent = ???
-      todayCard.appendChild(displayContainer);
-      console.log(response);
-      response.json().then(function(lat,lon) {
-        console.log(list.main.temp);
+      //todayCard.appendChild(displayContainer);
+     // console.log(response);
+      response.json().then(function(data) {
+        console.log(data)
+
+        for(var i = 0; i < 5; i++){
+          var date = new Date(data.daily[i].dt * 1000);
+          console.log(date)
+          var dayCard = document.createElement("div");
+          dayCard.classList.add("card");
+          displayContainer.append(dayCard);
+          var icon = data.daily[i].weather[0].icon;
+          var image = document.createElement("img");
+          image.src = "http://openweathermap.org/img/wn/" + icon +"@2x.png";
+         // console.log(image);
+          dayCard.appendChild(image);
+          var temp = document.createElement("p");
+          temp.textContent = data.daily[i].weather[0].temp;
+          dayCard.appendChild(temp);
+
+        }
+       
+        //console.log(list.main.temp);
       });
     } else {
       alert("Error: " + response.statusText);
