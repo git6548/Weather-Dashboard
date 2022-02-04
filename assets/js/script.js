@@ -2,8 +2,6 @@
 var submit = document.querySelector("#submit-button");
 var cityEntered = document.querySelector("#city-entered");
 var cityList = document.querySelector("#city-list");
-var lat = "50";
-var lon = "99";
 var displayContainer = document.querySelector("#display-container");
 
 // when submit button is clicked, add text in input to a list of buttons
@@ -13,6 +11,7 @@ var cityEl = document.createElement("button");
 cityEl.classList.add("city-button");
 cityEl.textContent = cityEntered.value;
 cityList.appendChild(cityEl);
+//localStorage.setItem("?", ?.val());
 });
 
 
@@ -27,9 +26,12 @@ var makeCoordinates = function(cityEntered){
       if (response.ok) {
         console.log(response);
         response.json().then(function(data) {
+          var lat = "50";
+          var lon = "99";
           console.log(data);
           console.log(lat);
           console.log(lat);
+          getWeather(lat,lon);
         });
       } else {
         alert("Error: " + response.statusText);
@@ -39,14 +41,17 @@ var makeCoordinates = function(cityEntered){
       alert("Unable to connect to Open Weather");
     });
 };
-/* 
+
 var getWeather = function(lat,lon){
 
-  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
+  var apiURL2 = "api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
   fetch(apiURL2)
   .then(function(lat,lon) {
     // request was successful
     if (response.ok) {
+      var todayCard = document.createElement("div");
+      //todayCard.textContent = ???
+      todayCard.appendChild(displayContainer);
       console.log(response);
       response.json().then(function(lat,lon) {
         console.log(list.main.temp);
@@ -59,10 +64,10 @@ var getWeather = function(lat,lon){
     alert("Unable to connect to Open Weather");
   });
 };
-   */
+  
 
 
-// dynamically create weather cards
+/* // dynamically create weather cards
 var todayCard = document.createElement("div");
 todayCard.classList.add("card");
 todayCard.appendChild(displayContainer);
@@ -70,5 +75,5 @@ var todayTemp = document.createElement("p");
 //todayTemp.textContent = ???
 todayCard.appendChild(todayTemp);
 
-
+ */
 
