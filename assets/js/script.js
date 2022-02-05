@@ -18,6 +18,7 @@ submit.addEventListener("click", function (event) {
   cityEl.textContent = cityEntered.value;
   cityList.appendChild(cityEl);
   makeCoordinates(cityEntered.value)
+  localStorage.setItem("cityEntered", cityEntered.value);
 });
 
 
@@ -126,3 +127,18 @@ var getWeather = function (lat, lon) {
       alert("Unable to connect to Open Weather");
     });
 };
+
+
+
+// local storage
+
+  var cityEl = document.createElement("button");
+  cityEl.classList.add("city-button");
+  cityEl.textContent = localStorage.getItem("cityEntered");
+  cityList.appendChild(cityEl);
+
+//click in history to find weather forecast
+
+cityList.addEventListener("click", function (cityList) {
+ makeCoordinates(cityList);
+});
