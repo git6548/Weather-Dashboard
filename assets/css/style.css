@@ -21,3 +21,6 @@ background-color: rgb(76, 204, 236);
 #input-field {
     width: 100%;
 }
+.card {
+    display: inline-block;
+}
