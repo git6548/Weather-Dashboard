@@ -71,7 +71,7 @@ var getWeather = function (lat, lon) {
             displayContainer.append(dayCard);
             var icon = data.daily[i].weather[0].icon;
             var image = document.createElement("img");
-            image.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+            image.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
             // console.log(image);
 
 
