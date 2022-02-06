@@ -26,7 +26,7 @@ submit.addEventListener("click", function (event) {
 
 var makeCoordinates = function (cityEntered) {
 
-  var apiURL1 = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
+  var apiURL1 = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&appid=4523c39d6b573820e0a0469c2e98ebe6";
   fetch(apiURL1)
     .then(function (response) {
       // request was successful
