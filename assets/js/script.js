@@ -50,7 +50,7 @@ var makeCoordinates = function (cityEntered) {
 var getWeather = function (lat, lon) {
 
 
-  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6&units=metric";
+  var apiURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=4523c39d6b573820e0a0469c2e98ebe6&units=imperial";
   fetch(apiURL2)
     .then(function (response) {
       // request was successful
